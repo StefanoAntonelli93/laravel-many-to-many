@@ -7,6 +7,7 @@ use App\Models\ProjectTechnology;
 use App\Models\Technology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class ProjectTechnologySeeder extends Seeder
 {
@@ -15,6 +16,8 @@ class ProjectTechnologySeeder extends Seeder
      */
     public function run(): void
     {
+        Schema::disableForeignKeyConstraints();
+        ProjectTechnology::truncate();
         // ciclo x5
         for ($i = 0; $i < 5; $i++) {
             // creo nuova istanza project_technology
@@ -26,5 +29,6 @@ class ProjectTechnologySeeder extends Seeder
             // salvo modifiche nel seeder
             $new_project_technology->save();
         }
+        Schema::enableForeignKeyConstraints();
     }
 }
