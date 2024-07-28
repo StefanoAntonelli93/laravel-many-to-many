@@ -39,9 +39,28 @@
                 </select>
             </div>
 
+            {{-- tecnologie form check --}}
 
-            {{-- form check --}}
+            <p>Tecnologie</p>
+            @foreach ($technologies as $technology)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="tag-{{ $technology->id }}"
+                        value="{{ $technology->id }}" name="technologies[]" {{-- se ci sono tecnologie selezionate le mostro altrimenti campo vuoto  --}}
+                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="tag-{{ $technology->id }}">{{ $technology->name }}</label>
+                </div>
+            @endforeach
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="tag-99" value="99" name="technologies[]">
+                <label class="form-check-label" for="tag-99">non valido</label>
+            </div>
+
+
+
+            {{-- status form check --}}
+
             <div class="py-3 d-flex gap-3">
+                <p>Status</p>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="status" id="status_in_corso" value="in corso">
                     <label class="form-check-label" for="status_in_corso">

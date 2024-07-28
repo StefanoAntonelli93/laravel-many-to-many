@@ -27,7 +27,8 @@ class StoreProjectRequest extends FormRequest
             'description' => 'string|min:5|max:255',
             'cover_image' => 'nullable|image|max:2048',
             // validazione campo type_id, deve esistere nella colonna id della tabella type
-            'type_id' => ['nullable', 'exists:types,id']
+            'type_id' => ['nullable', 'exists:types,id'],
+            'technologies' => ['nullable', 'exists:technologies,id']
         ];
     }
     // public function messages()

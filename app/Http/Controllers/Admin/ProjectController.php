@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -33,8 +34,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -65,6 +67,13 @@ class ProjectController extends Controller
         $project->user_id = $current_user;
 
         $project->save();
+
+        // mostro tecnologie se ci sono
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
+
+
         // reindirizzo a show
         return redirect()->route('admin.projects.index', $project)->with('message', 'Nuovo progetto creato:' . " " . "$project->name");
     }
