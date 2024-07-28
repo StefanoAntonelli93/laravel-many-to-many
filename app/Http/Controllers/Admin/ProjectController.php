@@ -109,7 +109,7 @@ class ProjectController extends Controller
 
         $project->update($data);
 
-        $project->save();
+
 
         // // se ci sono tecnologie allora modifico e agginugo campi tecnologie modificati
         if ($request->has('technologies')) {

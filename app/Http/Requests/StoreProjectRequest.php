@@ -25,6 +25,7 @@ class StoreProjectRequest extends FormRequest
             // posso usare anche array per le validazioni
             'name' => 'required|string|unique:projects|min:5|max:70',
             'description' => 'string|min:5|max:255',
+            'status' => 'required|string|in:in corso,completato,in attesa,cancellato',
             'cover_image' => 'nullable|image|max:2048',
             // validazione campo type_id, deve esistere nella colonna id della tabella type
             'type_id' => ['nullable', 'exists:types,id'],

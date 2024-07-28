@@ -62,26 +62,29 @@
             {{-- status form check --}}
             <div class="py-3 d-flex gap-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="status_in_corso" value="in_corso">
+                    <input class="form-check-input" type="radio" name="status" id="status_in_corso" value="in corso"
+                        {{ old('status', $project->status) == 'in corso' ? 'checked' : '' }}>
                     <label class="form-check-label" for="status_in_corso">
                         In corso
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="status_completato" value="completato">
+                    <input class="form-check-input" type="radio" name="status" id="status_completato" value="completato"
+                        {{ old('status', $project->status) == 'completato' ? 'checked' : '' }}>
                     <label class="form-check-label" for="status_completato">
                         Completato
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="status_in_attesa" value="in_attesa"
-                        checked>
+                    <input class="form-check-input" type="radio" name="status" id="status_in_attesa" value="in attesa"
+                        {{ old('status', $project->status) == 'in attesa' ? 'checked' : '' }}>
                     <label class="form-check-label" for="status_in_attesa">
                         In attesa
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="status_cancellato" value="cancellato">
+                    <input class="form-check-input" type="radio" name="status" id="status_cancellato" value="cancellato"
+                        {{ old('status', $project->status) == 'cancellato' ? 'checked' : '' }}>
                     <label class="form-check-label" for="status_cancellato">
                         Cancellato
                     </label>
