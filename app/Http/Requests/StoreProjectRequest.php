@@ -28,6 +28,7 @@ class StoreProjectRequest extends FormRequest
             'cover_image' => 'nullable|image|max:2048',
             // validazione campo type_id, deve esistere nella colonna id della tabella type
             'type_id' => ['nullable', 'exists:types,id'],
+            // technologies può essere nullo e se esiste nella tabella technologies nel campo id allora è valido
             'technologies' => ['nullable', 'exists:technologies,id']
         ];
     }
