@@ -21,7 +21,16 @@
             @if ($project->type != null)
                 <p>Tipo progetto: {{ $project->type->name }}</p>
             @endif
-
+            {{-- tecnologie --}}
+            @if ($project->technologies->isNotEmpty())
+                <p>Tecnologie:
+                <ul>
+                    @foreach ($project->technologies as $technology)
+                        <li>{{ $technology->name }}</li>
+                    @endforeach
+                </ul>
+                </p>
+            @endif
             <p>Data inizio progetto: {{ $project->project_start_date }}</p>
             <p>Data fine progetto: {{ $project->project_end_date }}</p>
             <p>Status: {{ ucfirst($project->status) }}</p>
