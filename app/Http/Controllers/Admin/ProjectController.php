@@ -109,6 +109,13 @@ class ProjectController extends Controller
 
         $project->update($data);
 
+        $project->save();
+
+        // // se ci sono tecnologie allora modifico e agginugo campi tecnologie modificati
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        }
+
         return redirect()->route('admin.projects.index', $project)->with('message', "$project->name" . " " .  'modificato con successo');
     }
 
@@ -117,6 +124,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        // prima di cancellare record faccio detach per eliminare relazione tabella pivot
+        $project->technologies()
+            ->detach();
+
         // se progetto ha immagine la cancello
         if ($project->cover_image) {
             Storage::delete($project->cover_image);
